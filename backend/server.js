@@ -6,12 +6,21 @@ import connectDB from './config/mongodb.js'
 import userRouter from './routes/userRoutes.js'
 import imageRouter from './routes/imageRoutes.js';
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4001
 console.log("Mongo URI:", process.env.MongoDb_URI);
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",                 // local frontend
+      "https://image-text-1-1ck8.onrender.com" // deployed frontend
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"]
+  })
+);
 await connectDB(); // doubt why await 
 
 app.use('/api/user',userRouter);
