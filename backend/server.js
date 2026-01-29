@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",                 // local frontend
+                      
       "https://image-text-1-1ck8.onrender.com" // deployed frontend
     ],
     credentials: true,
